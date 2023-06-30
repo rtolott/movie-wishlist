@@ -1,5 +1,4 @@
 const listsModel = require('../models/listsModel');
-const listsModels = require('../models/listsModel');
 
 const getAllLists = async (request, response) => {
 
