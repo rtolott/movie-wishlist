@@ -40,7 +40,7 @@ const removeList = async (request, response) => {
 const insertMovieIntoList = async (request, response) => {
     const { movieID , listID } = request.params;
 
-    await listsModel.insertMovieIntoList(movieID, listID);
+    await listsModel.insertMovieIntoList(movieID, listID, request.ID);
 
     return response.status(200).json('Filme inserido');
 };
@@ -48,7 +48,7 @@ const insertMovieIntoList = async (request, response) => {
 const removeMovieFromList = async (request, response) => {
     const { movieID , listID } = request.params;
 
-    await listsModel.removeMovieFromList(movieID, listID);
+    await listsModel.removeMovieFromList(movieID, listID, request.ID);
 
     return response.status(200).json('Filme removido');
 };

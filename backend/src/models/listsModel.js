@@ -47,7 +47,11 @@ const removeList = async (id, userID) => {
     return removedList;
 };
 
-const insertMovieIntoList = async (movieID, listID) => {
+const insertMovieIntoList = async (movieID, listID, userID) => {
+
+    const [idlist] = await connection.execute('SELECT * FROM lists WHERE id = ? AND userID = ?', [listID, userID]);
+
+    if (idlist == "") return;
     
     const query = 'INSERT INTO movie_lists (movieID, listID) VALUES ( ? , ? )';
     
@@ -56,7 +60,11 @@ const insertMovieIntoList = async (movieID, listID) => {
     return insertedMovieIntoList;
 };
 
-const removeMovieFromList = async (movieID, listID) => {
+const removeMovieFromList = async (movieID, listID, userID) => {
+
+    const [idlist] = await connection.execute('SELECT * FROM lists WHERE id = ? AND userID = ?', [listID, userID]);
+
+    if (idlist == "") return;
     
     const query = 'DELETE FROM movie_lists WHERE movieID = ? AND listID = ?';
     

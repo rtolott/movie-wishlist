@@ -17,30 +17,44 @@ const getMovieById = async (id) => {
 const createMovie = async (movie) => {
     const { title } = movie;
     const { synopsis } = movie;
-    const { director } = movie;
     const { releaseYear } = movie;
     const { runtime } = movie;
     const { genres } = movie;
 
-    const query = 'INSERT INTO movies (title, synopsis, director, releaseYear, runtime, genres) VALUES (?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO movies (title, synopsis, releaseYear, runtime, genres) VALUES (?, ?, ?, ?, ?)';
     
-    const [createdMovie] = await connection.execute(query, [title, synopsis, director, releaseYear, runtime, genres]);
+    const [createdMovie] = await connection.execute(query, [title, synopsis, releaseYear, runtime, genres]);
     
     return {insertId: createdMovie.insertId};
 };
 
 const updateMovie = async (id, movie) => {
-    const { title } = movie;
-    const { synopsis } = movie;
-    const { director } = movie;
-    const { releaseYear } = movie;
-    const { runtime } = movie;
-    const { genres } = movie;
+    if (movie.title) {
+        const query = 'UPDATE movies SET title = ? WHERE id = ?';
+        await connection.execute(query, [movie.title, id]);
+    }
 
-    const query = 'UPDATE movies SET title = ?, synopsis = ?, director = ?, releaseYear = ?, runtime = ?, genres = ? WHERE id = ?';
-    
-    const [updatedMovie] = await connection.execute(query, [title, synopsis, director, releaseYear, runtime, genres, id]);
-    return updatedMovie;
+    if (movie.synopsis) {
+        const query = 'UPDATE movies SET synopsis = ? WHERE id = ?';
+        await connection.execute(query, [movie.synopsis, id]);
+    }
+
+    if (movie.releaseYear) {
+        const query = 'UPDATE movies SET releaseYear = ? WHERE id = ?';
+        await connection.execute(query, [movie.releaseYear, id]);
+    }
+
+    if (movie.runtime) {
+        const query = 'UPDATE movies SET runtime = ? WHERE id = ?';
+        await connection.execute(query, [movie.runtime, id]);
+    }
+
+    if (movie.genres) {
+        const query = 'UPDATE movies SET genres = ? WHERE id = ?';
+        await connection.execute(query, [movie.genres, id]);
+    }
+
+    return;
 };
 
 const removeMovie = async (id) => {

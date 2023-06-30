@@ -1,0 +1,33 @@
+CREATE DATABASE moviefy;
+USE moviefy;
+
+CREATE TABLE users (
+    ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE movies (
+    ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    synopsis TEXT,
+    releaseYear INT NOT NULL,
+    runtime INT NOT NULL,
+    genres VARCHAR(100)
+);
+
+CREATE TABLE lists (
+    ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR (50),
+    userID INT,
+    FOREIGN KEY (userID) REFERENCES users(ID)
+);
+
+CREATE TABLE movie_lists (
+    ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    listID INT,
+    movieID INT,
+    FOREIGN KEY (listID) REFERENCES lists(ID) ON DELETE CASCADE,
+    FOREIGN KEY (movieID) REFERENCES movies(ID) ON DELETE CASCADE
+);
