@@ -5,6 +5,8 @@ const usersRouter = express.Router();
 const usersController = require('../controllers/usersController');
 const fieldsValidator = require('../middlewares/fieldsValidator');
 
+usersRouter.get('/', async (_request, response) => { return response.status(200).json("Servidor OK"); });
+
 usersRouter.get('/api/users', usersController.getAllUsers);
 
 usersRouter.get('/api/users/:id', usersController.getUserById);
