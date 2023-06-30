@@ -2,10 +2,12 @@ FROM node:18
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
+COPY . .
+
 EXPOSE 1010
 
-CMD ["node", "./src/app.js"]
+CMD ["npm", "start"]
