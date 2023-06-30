@@ -1,4 +1,5 @@
 CREATE DATABASE moviefy;
+
 USE moviefy;
 
 CREATE TABLE users (

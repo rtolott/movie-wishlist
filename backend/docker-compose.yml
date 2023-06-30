@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_HOST=MYSQL_REAL_HOST
+      - MYSQL_HOST=mysql
       - MYSQL_LOCAL_PORT=3306
       - MYSQL_DATABASE=$MYSQL_DB
       - MYSQL_USERNAME=$MYSQL_USER
