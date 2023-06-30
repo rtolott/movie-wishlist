@@ -12,7 +12,9 @@ const getListById = async (request, response) => {
     
     const list = await listsModel.getListById(id, request.ID);
 
-    return response.status(200).json({Title: list.listtitle, Movies: list.movies});
+    console.log(list);
+
+    return response.status(200).json(list);
 };
 
 const createList = async (request, response) => {

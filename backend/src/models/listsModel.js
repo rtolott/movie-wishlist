@@ -7,15 +7,19 @@ const getAllLists = async (userID) => {
 
 const getListById = async (listID, userID) => {
     
-    const query_title = "SELECT id,title FROM lists WHERE ID = ? AND userID = ?";
+    const query_list = "SELECT id,title FROM lists WHERE ID = ? AND userID = ?";
     
-    const [listtitle] = await connection.execute(query_title, [listID, userID]);
+    const [list] = await connection.execute(query_list, [listID, userID]);
     
     query_movielist = "SELECT m.* FROM movie_lists ml INNER JOIN lists l ON ml.listID = l.ID INNER JOIN movies m ON ml.movieID = m.ID WHERE l.ID = ? AND l.userID = ?";
     
     const [movies] = await connection.execute(query_movielist, [listID, userID]);
 
-    return {listtitle, movies};
+    return {
+        ID: list[0].id,
+        Title: list[0].title,
+        movies
+    }
 }
 
 const createList = async (list, userID) => {
