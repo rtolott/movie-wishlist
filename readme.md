@@ -1,6 +1,17 @@
 # Link Workspace Postman
 https://www.postman.com/altimetry-specialist-13032800/workspace/tsi-an/collection/22841172-9cc695b1-2ad0-4f93-9b5b-eef5953de2ea?action=share&creator=22841172
 
+# Passo a passo para execução
+
+* Pré-requisitos para execução
+- Docker deve estar instalado no Sistema Operacional
+
+1. Realizar o push do repositório Github na máquina local
+
+2. Acessar o diretório \backend: `cd .\backend`
+
+3. Alterar o arquivo .env.example com as informações do seu banco de dados
+
 # Autor 
 `Raul de Souza Tolotti`
 
